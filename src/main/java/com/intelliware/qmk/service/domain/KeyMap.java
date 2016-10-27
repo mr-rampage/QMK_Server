@@ -1,17 +1,29 @@
 package com.intelliware.qmk.service.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by jr on 2016-10-27.
  */
 public class KeyMap {
 
-    private String content;
 
-    public String getContent() {
-        return content;
+    private String[][] maps;
+
+
+    public String[][] getMaps() {
+        return maps;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setMaps(String[][] maps) {
+        this.maps = maps;
+    }
+
+    @Override
+    public String toString() {
+        return "KeyMap{" +
+                "maps=" + Arrays.toString(maps) +
+                '}';
     }
 }
