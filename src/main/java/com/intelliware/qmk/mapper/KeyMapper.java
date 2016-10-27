@@ -46,6 +46,7 @@ public class KeyMapper {
 
 
     public String mapKey(String key) {
-        return KEY_MAP_CONFIG.get(key.toUpperCase());
+        String mapKey = KEY_MAP_CONFIG.get(key.toUpperCase());
+        return mapKey == null ? KC_TRNS : mapKey;
     }
 }
