@@ -1,13 +1,11 @@
-package com.intelliware.qmk.service.mapper;
+package com.intelliware.qmk.mapper;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intelliware.qmk.service.domain.KeyMapRequest;
-import com.intelliware.qmk.service.user.QMKService;
-import com.intelliware.qmk.service.util.Utils;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import com.intelliware.qmk.domain.KeyMapRequest;
+import com.intelliware.qmk.service.QMKService;
+import com.intelliware.qmk.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -66,6 +64,10 @@ public class KeyMapCGenerator {
 
         for (int i = 0; i < source.length; i++) {
 //            target[i] = new String[];
+            if (i != 0) {
+                strBuld.append(", ");
+            }
+
             strBuld.append(CURL_BRACKET_LEFT);
 
 

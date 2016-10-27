@@ -1,6 +1,4 @@
-package com.intelliware.qmk.service.domain;
-
-import org.springframework.util.StringUtils;
+package com.intelliware.qmk.domain;
 
 /**
  * Created by jr on 2016-10-27.

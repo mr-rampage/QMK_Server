@@ -1,7 +1,7 @@
-package com.intelliware.qmk.service.user;
+package com.intelliware.qmk.service;
 
-import com.intelliware.qmk.service.domain.KeyMapRequest;
-import com.intelliware.qmk.service.mapper.KeyMapCGenerator;
+import com.intelliware.qmk.domain.KeyMapRequest;
+import com.intelliware.qmk.mapper.KeyMapCGenerator;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

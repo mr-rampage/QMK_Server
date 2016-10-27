@@ -1,6 +1,5 @@
-package com.intelliware.qmk.service.util;
+package com.intelliware.qmk.util;
 
-import com.intelliware.qmk.service.mapper.KeyMapCGenerator;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
