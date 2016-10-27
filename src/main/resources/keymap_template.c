@@ -14,7 +14,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [0] = [[==KEY_MAP_0==]]
 
-,
+};
 
 const uint16_t PROGMEM fn_actions[] = {
 
