@@ -55,7 +55,6 @@ public class QMKService {
 
         response.setContentType("application/octet-stream");
 
-
         // get your file as InputStream
         InputStream is = new FileInputStream(result);
         org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
@@ -64,20 +63,26 @@ public class QMKService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
-    public void getFile(
-            @PathVariable("file_name") String fileName,
+    @RequestMapping(value = "/files/{session_id}", method = RequestMethod.GET)
+    public ResponseEntity<Void>  getFile(
+            @PathVariable("session_id") String sessionId,
             HttpServletResponse response) {
+
         try {
+            File hexFile = KeyMapCGenerator.getHexFileById(sessionId);
+            logger.debug("Getting file: " + hexFile.getAbsolutePath());
+            if (!hexFile.exists()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
             // get your file as InputStream
-            InputStream is = new FileInputStream(new File(fileName));
+            InputStream is = new FileInputStream(hexFile);
             // copy it to response's OutputStream
             org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
             response.flushBuffer();
+            return new ResponseEntity<>(HttpStatus.OK);
 
         } catch (IOException ex) {
-            logger.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
-            throw new RuntimeException("IOError writing file to output stream");
+            throw new RuntimeException("Error getting file content for session id {}" + sessionId, ex);
         }
 
     }

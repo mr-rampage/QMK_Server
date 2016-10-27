@@ -55,6 +55,10 @@ public class KeyMapCGenerator {
         return new File(KEY_MAP_BUILD_DIR_PATH, KEYBOARD + "_" + request.getId() + ".hex");
     }
 
+    public static File getHexFileById(String id) {
+        return new File(KEY_MAP_BUILD_DIR_PATH, KEYBOARD + "_" + id + ".hex");
+    }
+
     private String mapOneLayer(String[][] source) {
 
         MappedLayer mappedLayer = new MappedLayer();
