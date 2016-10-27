@@ -13,7 +13,7 @@ import java.io.StringWriter;
 public class Utils {
 
     public static String readFile(String fileName) {
-        InputStream is = KeyMapCGenerator.class.getClassLoader().getResourceAsStream(fileName);
+        InputStream is = Utils.class.getClassLoader().getResourceAsStream(fileName);
         StringWriter sw = new StringWriter();
         try {
             IOUtils.copy(is, sw);

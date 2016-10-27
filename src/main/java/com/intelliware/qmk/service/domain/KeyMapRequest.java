@@ -7,13 +7,14 @@ import org.springframework.util.StringUtils;
  */
 public class KeyMapRequest {
 
-    private KeyMap layer;
 
-    public KeyMap getLayer() {
+    private String[][] layer;
+
+    public String[][] getLayer() {
         return layer;
     }
 
-    public void setLayer(KeyMap layer) {
+    public void setLayer(String[][] layer) {
         this.layer = layer;
     }
 
