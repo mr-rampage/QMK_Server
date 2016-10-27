@@ -5,6 +5,7 @@ package com.intelliware.qmk.domain;
  */
 public class KeyMapRequest {
 
+    private String id;
 
     private String[][] layer;
 
@@ -14,6 +15,14 @@ public class KeyMapRequest {
 
     public void setLayer(String[][] layer) {
         this.layer = layer;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

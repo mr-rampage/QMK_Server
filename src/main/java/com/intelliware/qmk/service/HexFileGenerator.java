@@ -1,6 +1,7 @@
 package com.intelliware.qmk.service;
 
 import com.google.common.io.Resources;
+import com.intelliware.qmk.hexgen.HexGenerateService;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,22 +14,6 @@ public class HexFileGenerator {
             InterruptedException,
             IOException {
 
-        String dockerDirectoryWithBuildargs = Resources.getResource("qmk_firmware").getFile();
-
-        Process dockerProcess = new ProcessBuilder(
-                "/usr/bin/docker",
-                "run",
-                "-e",
-                "keymap=default",
-                "-e",
-                "keyboard=preonic",
-                "--rm",
-                "-v",
-                dockerDirectoryWithBuildargs + ":/qmk:rw",
-                "edasque/qmk_firmware")
-                .directory(new File(dockerDirectoryWithBuildargs))
-                .start();
-
-        dockerProcess.waitFor();
+        new HexGenerateService().generateHex("atreus", "string");
     }
 }

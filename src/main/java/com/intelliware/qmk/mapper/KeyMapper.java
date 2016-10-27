@@ -2,7 +2,7 @@ package com.intelliware.qmk.mapper;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.intelliware.qmk.util.IOUtils;
+import com.intelliware.qmk.util.IOUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class KeyMapper {
     private Map<String, String> getKeyMap()  {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            String content = IOUtils.readFile(KEY_MAP_CONFIG_FILE);
+            String content = IOUtil.readFile(KEY_MAP_CONFIG_FILE);
             TypeReference<HashMap<String, String>> typeRef
                     = new TypeReference<HashMap<String, String>>() {};
 

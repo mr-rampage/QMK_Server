@@ -31,14 +31,37 @@ public class QMKService {
     @Autowired
     private KeyMapCGenerator generator;
 
-    @RequestMapping(method = POST)
-    @ApiOperation("Generate KeyMap File")
-    public ResponseEntity<String> generateKeyMapFile(@RequestBody KeyMapRequest keyMapRequest) throws IOException {
+    @RequestMapping(value = "/mapkeys", method = POST)
+    @ApiOperation("Generate KeyMap")
+    public ResponseEntity<String> generateKeyMap(@RequestBody KeyMapRequest keyMapRequest,
+
+                                                     HttpServletResponse response) throws IOException {
 
         logger.debug("Key Map:" + keyMapRequest.toString());
         String result = generator.generate(keyMapRequest);
 
+
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/mapkeys/file", method = POST)
+    @ApiOperation("Generate KeyMap File Content")
+    public ResponseEntity<Void> generateKeyMapFile(@RequestBody KeyMapRequest keyMapRequest,
+
+                                                     HttpServletResponse response) throws IOException, InterruptedException {
+
+        logger.debug("Key Map:" + keyMapRequest.toString());
+        File result = generator.generateFile(keyMapRequest);
+
+        response.setContentType("application/octet-stream");
+
+
+        // get your file as InputStream
+        InputStream is = new FileInputStream(result);
+        org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+        response.flushBuffer();
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
