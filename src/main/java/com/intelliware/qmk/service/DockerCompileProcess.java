@@ -27,8 +27,6 @@ public class DockerCompileProcess {
                 dockerDirectoryWithBuildargs + ":/qmk:rw",
                 "edasque/qmk_firmware")
                 .directory(new File(dockerDirectoryWithBuildargs))
-                .redirectError(new File(Resources.getResource("error").getFile()))
-                .redirectOutput(new File(Resources.getResource("out").getFile()))
                 .start();
 
         dockerProcess.waitFor();
