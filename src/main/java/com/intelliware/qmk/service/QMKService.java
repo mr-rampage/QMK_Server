@@ -10,7 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -35,6 +39,24 @@ public class QMKService {
         String result = generator.generate(keyMapRequest);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/files/{file_name}", method = RequestMethod.GET)
+    public void getFile(
+            @PathVariable("file_name") String fileName,
+            HttpServletResponse response) {
+        try {
+            // get your file as InputStream
+            InputStream is = new FileInputStream(new File(fileName));
+            // copy it to response's OutputStream
+            org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+
+        } catch (IOException ex) {
+            logger.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+            throw new RuntimeException("IOError writing file to output stream");
+        }
+
     }
 
 }
