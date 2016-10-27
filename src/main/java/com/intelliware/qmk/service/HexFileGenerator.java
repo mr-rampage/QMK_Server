@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 @SuppressWarnings("Since15")
-public class DockerCompileProcess {
+public class HexFileGenerator {
 
     public static void main(String[] args)
             throws
