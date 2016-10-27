@@ -1,6 +1,6 @@
+package com.intelliware.qmk.service;
+
 import com.google.common.io.Resources;
-import com.spotify.docker.client.DockerCertificateException;
-import com.spotify.docker.client.DockerException;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +9,7 @@ import java.io.IOException;
 public class DockerCompileProcess {
 
     public static void main(String[] args)
-            throws DockerCertificateException,
-            DockerException,
+            throws
             InterruptedException,
             IOException {
 
